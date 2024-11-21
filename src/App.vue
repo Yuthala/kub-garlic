@@ -1,15 +1,18 @@
 <template>
   <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
   <the-header msg="Настоящий Кубанский чеснок"/>
+  <tabs-main></tabs-main>
 </template>
 
 <script>
 import TheHeader from './components/TheHeader.vue'
+import TabsMain from './components/TabsMain.vue'
 
 export default {
   name: 'App',
   components: {
-    TheHeader
+    TheHeader,
+    TabsMain
   }
 }
 </script>

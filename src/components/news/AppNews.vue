@@ -1,9 +1,14 @@
 <template>
 	<div class="card mt-3">
 		<div class="card-body">
+			<p class="text-body-secondary small">{{ date }}</p>
 			<h5 class="card-title">{{ title }}</h5>
-			<p v-if="isNewsOpen" class="card-text">{{ details }}</p>
-			<button class="btn btn-primary" @click="open">
+			<div v-if="isNewsOpen" >
+				<h6 class="card-text text-body-secondary small pt-3">{{ source }} пишет:</h6>
+				<p class="card-text">{{ details }}</p>
+			</div>
+
+			<button class="badge details-btn" @click="open">
 				{{ isNewsOpen ? 'Свернуть' : 'Подробнее' }}
 			</button>
 		</div>
@@ -17,7 +22,15 @@
 				type: String,
 				required: true
 			},
+			date: {
+				type: Date,
+				required: true
+			},
 			details: {
+				type: String,
+				required: true
+			},
+			source: {
 				type: String,
 				required: true
 			},
@@ -47,3 +60,15 @@
 		}
 	}
 </script>
+
+<style scoped>
+	.details-btn {
+		background-color: transparent;
+		border: none;
+		border-bottom: 1px dashed gray;
+		border-radius: 0;
+		color: tomato;
+		padding-left: 0;
+		padding-right: 0;
+	}
+</style>

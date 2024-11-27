@@ -4,19 +4,32 @@
     <form class="card" @submit.prevent="submitHandler">
       <h2>Связаться с нами</h2>
       
-      <div class="form-control" :class="{invalid: errors.name}">
-        <label for="name">Ваше имя</label>
+      <div class="mb-3" :class="{invalid: errors.name}">
+        <label for="name" class="form-label">Ваше имя</label>
         <input 
-          type="text" 
-          id="name" 
-          placeholder="Введите имя"
-          v-model.trim="name"
+			type="text" 	
+			id="name" 
+			placeholder="Введите имя"
+			v-model.trim="name"
+			class="form-control"
           >
           <small v-if="errors.name">{{ errors.name }}</small>
       </div>
 
-      <div class="form-control">
-        <label for="city">Ваш регион</label>
+		<div class="mb-3" :class="{invalid: errors.name}">
+			<label for="email" class="form-label">Адрес электронной почты</label>
+			<input 
+			type="email" 
+			id="email" 
+			placeholder="example@email.com"
+			v-model.trim="email"
+			class="form-control"
+			>
+			<small v-if="errors.name">{{ errors.name }}</small>
+		</div>
+
+      <div class="mb-3">
+        <label for="city" class="form-label">Ваш регион</label>
         <select id="city" v-model="city">
 			<option value="center">Центральный</option>
 			<option value="north">Северный</option>
@@ -31,13 +44,13 @@
       <div class="form-checkbox">
         <span class="label">Интересующий продукт</span>
         <div class="checkbox">
-          <label><input type="checkbox" name="category" v-model="category" value="garlic"/>чеснок</label>
+          <label class="form-label"><input type="checkbox" name="category" v-model="category" value="garlic"/>чеснок</label>
         </div>
         <div class="checkbox">
-          <label><input type="checkbox" name="category" v-model="category" value="onion"/>лук</label>
+          <label class="form-label"><input type="checkbox" name="category" v-model="category" value="onion"/>лук</label>
         </div>
         <div class="checkbox">
-          <label><input type="checkbox" name="category" v-model="category" value="shalot"/>шалот</label>
+          <label class="form-label"><input type="checkbox" name="category" v-model="category" value="shalot"/>шалот</label>
         </div>
       </div>
 
@@ -48,7 +61,7 @@
 
       <div class="form-checkbox">
         <div class="checkbox">
-          <label><input type="checkbox" v-model="agree"/>Согласен с политикой <a href="" target="_blank" rel="noopener">конфиденциальности</a></label>
+          <label class="form-label"><input type="checkbox" v-model="agree"/>Согласен с политикой <a href="" target="_blank" rel="noopener">конфиденциальности</a></label>
         </div>
       </div>
 
@@ -63,6 +76,7 @@ import AppButton from './AppButton'
     data() {
       return {
         name: '',
+		email: '',
         city: 'center',
         category: [],
         agree: false, 

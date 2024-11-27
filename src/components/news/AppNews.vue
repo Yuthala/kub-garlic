@@ -8,14 +8,13 @@
 				<p class="card-text">{{ details }}</p>
 			</div>
 
-			<button class="badge details-btn" @click="open">
-				{{ isNewsOpen ? 'Свернуть' : 'Подробнее' }}
-			</button>
+			<app-button color="badge details-btn" @action="open" :text="isNewsOpen ? 'Свернуть' : 'Подробнее'"></app-button>
 		</div>
 	</div>
 </template>
 
 <script>
+import AppButton from './../AppButton'
 	export default {
 		props: {
 			title: {
@@ -23,7 +22,7 @@
 				required: true
 			},
 			date: {
-				type: Date,
+				type: String,
 				required: true
 			},
 			details: {
@@ -57,7 +56,8 @@
 					this.$emit('open-news')
 				}
 			}
-		}
+		},
+		components: {AppButton}
 	}
 </script>
 

@@ -8,17 +8,13 @@
 export default {
 	emits: ['action'],
 	props: {
-		// text: {
-		// 	type: String,
-		// 	required: true
-		// },
-	color: {
-		type: String,
+		color: {
+			type: String,
 		default: '',
-		validator(value) {
-			return ['', 'primary', 'danger'].includes(value)
+			validator(value) {
+				return ['', 'primary', 'danger', 'badge', 'details-btn'].includes(value)
+			}
 		}
-	}
 	}
 }
 </script>

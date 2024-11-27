@@ -17,8 +17,8 @@
 				</div>
 				
 				<div>
-					<app-text-one v-if="active === 'one' "></app-text-one>
-					<app-text-two v-else-if="active === 'two'"></app-text-two>
+					<tab-one v-if="active === 'one' "></tab-one>
+					<tab-two v-else-if="active === 'two'"></tab-two>
 				</div>
 
 				<keep-alive>
@@ -45,7 +45,7 @@
         // if(this.active === 'one') {
         //   return 'app-text-one'
         // } return 'app-text-two'
-        return 'app-text-' + this.active
+        return 'Tab' + this.active
       },
       oneColor() {
         return this.active === 'one' ? 'primary' : ''

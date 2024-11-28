@@ -6,13 +6,13 @@
 				<div>
 					<app-button 
 						:color="active === 'one' ? 'primary' : ''" 
-						@action="active = 'one'">
-						One
+						@action="active = 'one'"
+						text="One">
 					</app-button>
 					<app-button 
 						:color="active === 'two' ? 'primary' : ''" 
-						@action="active = 'two'">
-						Two
+						@action="active = 'two'"
+						text="Two">
 					</app-button>
 				</div>
 				

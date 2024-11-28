@@ -4,7 +4,7 @@
     <form class="card" @submit.prevent="submitHandler">
       <h2>Связаться с нами</h2>
       
-      <div class="mb-3" :class="{invalid: errors.name}">
+      <div class="mb-3 form-control" :class="{invalid: errors.name}">
         <label for="name" class="form-label">Ваше имя</label>
         <input 
 			type="text" 	
@@ -16,7 +16,7 @@
           <small v-if="errors.name">{{ errors.name }}</small>
       </div>
 
-		<div class="mb-3" :class="{invalid: errors.name}">
+		<div class="mb-3">
 			<label for="email" class="form-label">Адрес электронной почты</label>
 			<input 
 			type="email" 
@@ -25,12 +25,11 @@
 			v-model.trim="email"
 			class="form-control"
 			>
-			<small v-if="errors.name">{{ errors.name }}</small>
 		</div>
 
       <div class="mb-3">
         <label for="city" class="form-label">Ваш регион</label>
-        <select id="city" v-model="city">
+        <select id="city" v-model="city" class="form-select form-select-sm mb-3" aria-label="выбор региона">
 			<option value="center">Центральный</option>
 			<option value="north">Северный</option>
 			<option value="prv">Приволжский</option>
@@ -65,7 +64,7 @@
         </div>
       </div>
 
-      <app-button type="submit" class="btn primary">Отправить</app-button>
+      <app-button type="submit" class="btn primary" text="Отправить"></app-button>
     </form>
 	</div>
 </template>
@@ -100,9 +99,9 @@ import AppButton from './AppButton'
       submitHandler() {
         if (this.formIsValid() ) { //отправляем форму, если formIsValid = true
 			console.log('Name:', this.name)
+			console.log('Email', this.email)
 			console.log('Region:', this.city)
-			console.log('Category:', this.skills)
-			console.log('Category:', this.skills)
+			console.log('Category:', this.category)
 			console.log('Question:', this.textarea)
 			console.log('Agree:', this.agree)
         }

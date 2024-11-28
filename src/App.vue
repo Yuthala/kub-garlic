@@ -40,4 +40,8 @@ textarea {
   color: gray;
   font-size: .8em;
 }
+
+select.form-select {
+  width: 30%;
+}
 </style>

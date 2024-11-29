@@ -4,7 +4,7 @@
     <form class="card" @submit.prevent="submitHandler">
       <h2>Связаться с нами</h2>
       
-      <div class="mb-3 form-control" :class="{invalid: errors.name}">
+      <!-- <div class="mb-3 form-control" :class="{invalid: errors.name}">
         <label for="name" class="form-label">Ваше имя</label>
         <input 
 			type="text" 	
@@ -14,7 +14,14 @@
 			class="form-control"
           >
           <small v-if="errors.name">{{ errors.name }}</small>
-      </div>
+      </div> -->
+
+		<app-input
+			placeholder="Введите имя"
+			:error="errors.name"
+			label="Ваше имя"
+			v-model="name"
+		></app-input>
 
 		<div class="mb-3 form-control" :class="{invalid: errors.email}">
 			<label for="email" class="form-label">Адрес электронной почты</label>
@@ -72,6 +79,7 @@
   
 <script>
 import AppButton from './AppButton'
+import AppInput from './AppInput'
   export default {
     data() {
       return {
@@ -115,7 +123,7 @@ import AppButton from './AppButton'
         }
       }
     },
-	components: {AppButton}
+	components: {AppButton, AppInput}
   }
 </script>
   

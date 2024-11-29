@@ -16,7 +16,7 @@
           <small v-if="errors.name">{{ errors.name }}</small>
       </div>
 
-		<div class="mb-3">
+		<div class="mb-3 form-control" :class="{invalid: errors.email}">
 			<label for="email" class="form-label">Адрес электронной почты</label>
 			<input 
 			type="email" 
@@ -25,6 +25,7 @@
 			v-model.trim="email"
 			class="form-control"
 			>
+			<small v-if="errors.email">{{ errors.email }}</small>
 		</div>
 
       <div class="mb-3">
@@ -80,8 +81,9 @@ import AppButton from './AppButton'
         category: [],
         agree: false, 
 		textarea: '',
-        errors: {
-          name: null
+        errors: {	
+			name: null,
+			email: null
         }
       }
     },
@@ -93,6 +95,12 @@ import AppButton from './AppButton'
           isValid = false//меняем isValid на false
         } else {
           this.errors.name = null//ставим стандартные стили, если введено имя
+			if (this.email.length === 0) {
+				this.errors.email = 'Введите адрес электронной почты, чтобы мы могли ответить вам'
+				isValid = false
+			} else {
+				this.errors.email = null
+			}
         }
         return isValid //возвращаем isValid
       },

@@ -10,14 +10,22 @@
 
 			<button class="btn btn-success" :disabled="name.length === 0" >Отправить запрос</button>
 		</form>
+
+	<app-sort-list 
+		:sort="sort"
+		@load="loadSort"
+	></app-sort-list>	
 	</div>
 </template>
 
 <script>
+import AppSortList from './../AppSortList.vue'
+import axios from 'axios'
 export default {
 	data() {
 		return {
-			name: ''
+			name: '',
+			sort: []
 		}
 	},
 	methods: {
@@ -38,14 +46,25 @@ export default {
 			const firebaseData = await response.json()
 			console.log(firebaseData)
 			this.name = ''
+		},
+		async loadSort() {
+			const {data} = await axios.get('https://vue-kub-garlic-default-rtdb.firebaseio.com/sort.json')
+			this.sort = Object.keys(data).map(key => {
+				return {
+					id: key,
+					...data[key]
+				}
+			})
 		}
-	}
+	},
+	components: {AppSortList}
 }
 </script>
 
 <style scoped>
 	.card {
 		width: 50%;
+		margin: 20px 0;
 	}
 
 	button {

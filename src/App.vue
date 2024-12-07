@@ -3,6 +3,9 @@
   <the-header msg="Настоящий Кубанский чеснок"/>
   <tabs-main></tabs-main>
   <app-form></app-form>
+  <hr />
+  <app-formDB></app-formDB>
+  <hr />
   <news-main></news-main>
 </template>
 
@@ -11,6 +14,7 @@ import TheHeader from './components/TheHeader.vue'
 import TabsMain from './components/TabsMain.vue'
 import NewsMain from './components/NewsMain.vue'
 import AppForm from './components/AppForm.vue'
+import AppFormDB from './components/AppFormDB.vue'
 
 export default {
   name: 'App',
@@ -18,7 +22,8 @@ export default {
     TheHeader,
     TabsMain,
     NewsMain,
-    AppForm
+    AppForm,
+    AppFormDB
   }
 }
 </script>

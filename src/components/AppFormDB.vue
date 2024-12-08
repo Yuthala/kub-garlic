@@ -28,6 +28,9 @@ export default {
 			sort: []
 		}
 	},
+	mounted() {
+		this.loadSort()
+	},
 	methods: {
 		async createPerson() {
 			//https://vue-kub-garlic-default-rtdb.firebaseio.com/sort.json
@@ -44,7 +47,11 @@ export default {
 			})
 
 			const firebaseData = await response.json()
-			console.log(firebaseData)
+
+			this.sort.push({
+				firstName: this.name,
+				id: firebaseData.name
+			}) 
 			this.name = ''
 		},
 		async loadSort() {

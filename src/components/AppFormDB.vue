@@ -55,13 +55,21 @@ export default {
 			this.name = ''
 		},
 		async loadSort() {
-			const {data} = await axios.get('https://vue-kub-garlic-default-rtdb.firebaseio.com/sort.json')
-			this.sort = Object.keys(data).map(key => {
+			try{
+				const {data} = await axios.get('https://vue-kub-garlic-default-rtdb.firebaseio.com/sort.json')
+				if (!data) {
+					throw new Error ('Список пуст')
+				}
+				this.sort = Object.keys(data).map(key => {
 				return {
 					id: key,
 					...data[key]
 				}
 			})
+			} catch(e){
+				console.log(e.message)
+			}
+
 		}
 	},
 	components: {AppSortList}

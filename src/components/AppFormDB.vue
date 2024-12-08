@@ -11,7 +11,10 @@
 			<button class="btn btn-success" :disabled="name.length === 0" >Отправить запрос</button>
 		</form>
 
+	<app-loader v-if="loading"></app-loader>
+
 	<app-sort-list 
+		v-else
 		:sort="sort"
 		@load="loadSort"
 	></app-sort-list>	
@@ -20,12 +23,15 @@
 
 <script>
 import AppSortList from './../AppSortList.vue'
+import AppLoader from './../AppLoader.vue'
 import axios from 'axios'
+
 export default {
 	data() {
 		return {
 			name: '',
-			sort: []
+			sort: [],
+			loading: false
 		}
 	},
 	mounted() {
@@ -66,13 +72,16 @@ export default {
 					...data[key]
 				}
 			})
+			this.loading = false
+
 			} catch(e){
+				this.loading = false
 				console.log(e.message)
 			}
 
 		}
 	},
-	components: {AppSortList}
+	components: {AppSortList, AppLoader}
 }
 </script>
 

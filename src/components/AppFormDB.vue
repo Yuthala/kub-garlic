@@ -16,7 +16,7 @@
 			v-model="email"
 			></app-input>
 
-			<app-button class="btn primary" :disabled="name.length === 0" text="Отправить запрос"></app-button>
+			<app-button class="btn primary" :disabled="name.length === 0 || email.length === 0" text="Отправить запрос"></app-button>
 		</form>
 
 	<app-loader v-if="loading"></app-loader>

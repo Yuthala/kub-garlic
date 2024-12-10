@@ -1,5 +1,5 @@
 <template>
-	<div class="mb-3 form-control" :class="{invalid: error}">
+	<div class="mb-3" :class="{invalid: error}">
         <label :for="id" class="form-label">{{label}}</label>
         <input 
 			type="text" 	

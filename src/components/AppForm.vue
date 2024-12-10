@@ -23,7 +23,7 @@
 			v-model="name"
 		></app-input>
 
-		<div class="mb-3 form-control" :class="{invalid: errors.email}">
+		<div class="mb-3" :class="{invalid: errors.email}">
 			<label for="email" class="form-label">Адрес электронной почты</label>
 			<input 
 			type="email" 

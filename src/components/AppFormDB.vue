@@ -1,11 +1,12 @@
 <template>
 	<div class="container">
 		<form class="card" @submit.prevent="createPerson">
-			<h2>Напишите какой сорт вас заинтересовал</h2>
+			<h4>Напишите какой сорт вас заинтересовал,</h4>
+			<p class="small">и мы пришлем информацию по наличию и цены. <br/>Не является подпиской на рекламную рассылку.</p>
 
-			<div class="form-control">
+			<div>
 				<label for="name">Введите сорт</label>
-				<input class="form-control" type="text" id="name" v-model.trim="name">
+				<input class="form-control" type="text" id="name" v-model.trim="name" placeholder="например, Шадейка">
 			</div>
 
 			<button class="btn btn-success" :disabled="name.length === 0" >Отправить запрос</button>
@@ -92,8 +93,11 @@ export default {
 	}
 
 	button {
-		width: 30%;
+		min-width: 30%;
 		border-radius: 10px;
 		margin: 10px;
+	}
+	p {
+		line-height: 1.1rem;
 	}
 </style>

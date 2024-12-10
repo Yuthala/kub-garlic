@@ -68,7 +68,9 @@
 
       <div class="form-checkbox">
         <div class="checkbox">
-          <label class="form-label"><input type="checkbox" v-model="agree"/>Согласен с политикой <a href="" target="_blank" rel="noopener">конфиденциальности</a></label>
+          <label class="form-label">
+            <input type="checkbox" v-model="agree"/>Согласен с политикой <a href="" target="_blank" rel="noopener">конфиденциальности</a>
+          </label>
         </div>
       </div>
 
@@ -84,11 +86,11 @@ import AppInput from './AppInput'
     data() {
       return {
         name: '',
-		email: '',
+        email: '',
         city: 'center',
         category: [],
         agree: false, 
-		textarea: '',
+        textarea: '',
         errors: {	
 			name: null,
 			email: null

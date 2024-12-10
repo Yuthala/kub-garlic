@@ -1,6 +1,6 @@
 <template>
 	<div class="container">
-		<form class="card" @submit.prevent="createPerson">
+		<form class="card" @submit.prevent="createSort">
 			<h4>Напишите какой сорт вас заинтересовал,</h4>
 			<p class="small">и мы пришлем информацию по наличию и цены. <br/>Не является подпиской на рекламную рассылку.</p>
 
@@ -9,7 +9,14 @@
 				<input class="form-control" type="text" id="name" v-model.trim="name" placeholder="например, Шадейка">
 			</div>
 
-			<button class="btn btn-success" :disabled="name.length === 0" >Отправить запрос</button>
+			<app-input
+			placeholder="example@mail.com"
+			:error="errors.email"
+			label="Введите адрес электронной почты"
+			v-model="email"
+			></app-input>
+
+			<app-button class="btn primary" :disabled="name.length === 0" text="Отправить запрос"></app-button>
 		</form>
 
 	<app-loader v-if="loading"></app-loader>
@@ -26,12 +33,18 @@
 import AppSortList from './../AppSortList.vue'
 import AppLoader from './../AppLoader.vue'
 import axios from 'axios'
+import AppButton from './AppButton'
+import AppInput from './AppInput'
 
 export default {
 	data() {
 		return {
 			name: '',
 			sort: [],
+			email: '',
+			errors: {	
+				name: null
+			},
 			loading: false
 		}
 	},
@@ -39,9 +52,7 @@ export default {
 		this.loadSort()
 	},
 	methods: {
-		async createPerson() {
-			//https://vue-kub-garlic-default-rtdb.firebaseio.com/sort.json
-			//this.name
+		async createSort() {
 
 			const response = await fetch('https://vue-kub-garlic-default-rtdb.firebaseio.com/sort.json', {
 				method: 'POST',
@@ -49,7 +60,8 @@ export default {
 					'Content-Type': 'application/json'
 				},
 				body: JSON.stringify({
-					firstName: this.name
+					firstName: this.name,
+					email: this.email
 				})
 			})
 
@@ -57,9 +69,11 @@ export default {
 
 			this.sort.push({
 				firstName: this.name,
-				id: firebaseData.name
+				id: firebaseData.name,
+				email: firebaseData.email
 			}) 
 			this.name = ''
+			this.email = ''
 		},
 		async loadSort() {
 			try{
@@ -80,10 +94,23 @@ export default {
 				console.log(e.message)
 			}
 
-		}
-	},
-	components: {AppSortList, AppLoader}
-}
+		},
+		
+		formIsValid() {
+        let isValid = true //isValid изначально true
+			if (this.email.length === 0) {
+				this.errors.email = 'Введите адрес электронной почты, чтобы мы могли ответить вам'
+				isValid = false
+			} else {
+				this.errors.email = null
+			}
+			return isValid //возвращаем isValid
+        }
+      },
+		components: {AppSortList, AppLoader, AppButton, AppInput}
+	}
+
+
 </script>
 
 <style scoped>

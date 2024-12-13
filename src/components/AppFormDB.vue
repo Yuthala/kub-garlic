@@ -2,12 +2,20 @@
 	<div class="container">
 		<form class="card" @submit.prevent="createSort">
 			<h4>Напишите какой сорт вас заинтересовал,</h4>
-			<p class="small">и мы пришлем информацию по наличию и цены. <br/>Не является подпиской на рекламную рассылку.</p>
+			<p class="h5">и мы пришлем информацию по наличию и цены. <br/><span>Не является подпиской на рекламную рассылку.</span></p>
 
-			<div>
+			<!-- <div>
 				<label for="name">Введите сорт</label>
-				<input class="form-control" type="text" id="name" v-model.trim="name" placeholder="например, Шадейка">
-			</div>
+				<input class="form-control" type="text" id="name" maxlength="20" v-model.trim="name" placeholder="например, Шадейка">
+			</div> -->
+			<app-input
+			id="name"
+			placeholder="например, Шадейка"
+			:error="errors.name"
+			label="Введите сорт"
+			v-model.trim="name"
+			class="form-control"
+			></app-input>
 
 			<app-input
 			placeholder="example@mail.com"
@@ -126,5 +134,9 @@ export default {
 	}
 	p {
 		line-height: 1.1rem;
+	}
+	span {
+		color: darkgray;
+		font-size: 13px;
 	}
 </style>

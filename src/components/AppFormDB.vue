@@ -60,8 +60,8 @@ export default {
 		this.loadSort()
 	},
 	methods: {
+		// добавление в БД "какой сорт вас заинтересовал"
 		async createSort() {
-
 			const response = await fetch('https://vue-kub-garlic-default-rtdb.firebaseio.com/sort.json', {
 				method: 'POST',
 				headers: {
@@ -83,6 +83,7 @@ export default {
 			this.name = ''
 			this.email = ''
 		},
+		// вывод пользователю список ранее введенных запросов
 		async loadSort() {
 			try{
 				const {data} = await axios.get('https://vue-kub-garlic-default-rtdb.firebaseio.com/sort.json')
